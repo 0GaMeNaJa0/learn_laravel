@@ -32,6 +32,7 @@
                         <div class="col-sm-4">
                             <div class="search-box">
                                 <a href="/customers/create"><button class="add-btn">Add</button></a>
+                                <a href="/logout"><button class="logout-btn btn-danger">LOGOUT</button></a>
                             </div>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($customers as $index => $customer) { ?>
+                    <?php foreach ($customers as $index => $customer) { ?>
                         <tr>
                             <td>{{ $index + 1 }}</td> 
                             <td>{{ $customer->c_name }}</td> 
