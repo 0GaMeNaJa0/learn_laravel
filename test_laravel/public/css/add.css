@@ -2,7 +2,7 @@
     margin:0;
 }
 
-div{
+.container{
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@ div{
     height: 100vh;
 }
 
-.submit-btn{
+.submit-btn, .back-btn{
     display:block;
     margin:auto;
     padding:10px 40px; 

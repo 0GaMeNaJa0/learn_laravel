@@ -45,25 +45,49 @@ class customerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) //--> customers/id --> customers/3
     {
-        //
+        $c_data = customerModel::find($id);
+        $customers = customerModel::all();
+
+        if($c_data === null){
+            return Redirect::to("/customers");
+        } else{
+            return view("read",compact("c_data"));
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) 
     {
-        //
+        $c_data = customerModel::find($id);
+        $customers = customerModel::all();
+
+        if($c_data === null){
+            return Redirect::to("/customers");
+        } else{
+            return view("update",compact("c_data"));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) //
     {
-        //
+        $name = $request -> input("name");
+        $phone = $request -> input("phone");
+
+        $customerModelId = customerModel::find($id);
+
+        $customerModelId -> c_name = $name;
+        $customerModelId -> c_phone = $phone;
+
+        $customerModelId -> save();
+
+        return Redirect::to("/customers");
     }
 
     /**
@@ -71,6 +95,10 @@ class customerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customerModelId = customerModel::find($id);
+
+        $customerModelId -> delete();
+        
+        return Redirect::to("/customers");
     }
 }

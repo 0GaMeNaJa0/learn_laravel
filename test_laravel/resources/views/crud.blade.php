@@ -46,19 +46,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php echo $customers[0]?>
                         <?php foreach ($customers as $index => $customer) { ?>
                         <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $customer->c_name }}</td>
-                            <td>{{ $customer->c_phone }}</td>
+                            <td>{{ $index + 1 }}</td> 
+                            <td>{{ $customer->c_name }}</td> 
+                            <td>{{ $customer->c_phone }}</td> 
                             <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="material-icons">&#xE417;</i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
+                                {{-- GET --}}
+                                <a href="customers/{{$customer -> c_id}}" class="view" title="View"><i
+                                        class="material-icons">&#xE417;</i></a> 
+                                        
+                                {{-- GET --}}
+                                <a href="customers/{{$customer -> c_id}}/edit" class="edit" title="Edit"><i
                                         class="material-icons">&#xE254;</i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="material-icons">&#xE872;</i></a>
+                                
+                                {{-- DELETE --}}
+                                <form class ="delete-form"action="customers/{{$customer -> c_id}}" method ="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class = "delete-btn" type ="submit"><i class="material-icons delete">&#xE872;</i></button>
+                                </form>
                             </td>
                         </tr>
                         <?php } ?>
