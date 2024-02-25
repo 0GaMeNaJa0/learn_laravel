@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Bootstrap Simple Data Table</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -13,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
@@ -46,35 +48,14 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <?php foreach ($customers as $index => $customer) { ?>
-                        <tr>
-                            <td>{{ $index + 1 }}</td> 
-                            <td>{{ $customer->c_name }}</td> 
-                            <td>{{ $customer->c_phone }}</td> 
-                            <td>
-                                {{-- GET --}}
-                                <a href="customers/{{$customer -> c_id}}" class="view" title="View"><i
-                                        class="material-icons">&#xE417;</i></a> 
-                                        
-                                {{-- GET --}}
-                                <a href="customers/{{$customer -> c_id}}/edit" class="edit" title="Edit"><i
-                                        class="material-icons">&#xE254;</i></a>
-                                
-                                {{-- DELETE --}}
-                                <form class ="delete-form"action="customers/{{$customer -> c_id}}" method ="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button class = "delete-btn" type ="submit"><i class="material-icons delete">&#xE872;</i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php } ?>
+                    <tbody id ="show-table-body">
+                        
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <script src=" {{ asset('js/ajax.js') }} "></script>
 </body>
 
 </html>
