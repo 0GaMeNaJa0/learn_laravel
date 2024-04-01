@@ -26,4 +26,5 @@ Route::get("/logout",[userController::class,"logout"]);
 Route::get("/",function(){
     return Redirect::to("/customers");
 });
-Route::resource("/customers",customerController::class) -> middleware("auth");
+Route::resource("/customers",customerController::class);
+// -> middleware("auth");
